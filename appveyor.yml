@@ -1,9 +1,6 @@
 version: 1.0.{build}
 image: Visual Studio 2019
 
-environment:
-  GITHUB_TOKEN: $GITHUB_TOKEN
-
 configuration:
   - Release
 
@@ -13,7 +10,6 @@ build_script:
 
 deploy:
   provider: GitHub
-  repo: Elizabess/trello
   branch: main
   on_success: always
   release: true
