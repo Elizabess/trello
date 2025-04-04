@@ -1,6 +1,9 @@
 version: 1.0.{build}
 image: Visual Studio 2019
 
+environment:
+  GITHUB_TOKEN: $GITHUB_TOKEN
+
 configuration:
   - Release
 
@@ -13,3 +16,6 @@ deploy:
   repo: Elizabess/trello
   branch: main
   on_success: always
+  release: true
+  auth_token: $GITHUB_TOKEN
+  tag: '1.0.3'

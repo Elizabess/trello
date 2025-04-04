@@ -1,6 +1,6 @@
 {
     "name": "trello",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "A simple trello clone",
     "main": "index.js",
     "scripts": {
