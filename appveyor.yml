@@ -8,6 +8,7 @@ configuration:
   - Release
 
 build_script:
+  - echo %GITHUB_TOKEN%
   - yarn install
   - yarn build
 
