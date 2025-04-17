@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write  
+  issues: write   
+  pull-requests: write  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Укажите версию Node.js, которую вы используете
+
+      - name: Install dependencies
+        run: npm install  # Установите зависимости вашего проекта
+
+      - name: Run build
+        run: |
+          echo "Building the application..."
+          npm run build  # Замените на вашу команду сборки, если она отличается
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: 'v1.0.${{ github.run_number }}'
+          release_name: 'Release v1.0'
+          body: 'Описание релиза'
+          files: 
+            - path/to/your/build/output/*  # Укажите путь к файлам, которые нужно прикрепить к релизу
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
