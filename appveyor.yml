@@ -2,7 +2,7 @@ version: 1.0.{build}
 image: Visual Studio 2019
 
 environment:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
 
 configuration:
   - Release
@@ -17,5 +17,5 @@ deploy:
   branch: main
   on_success: always
   release: true
-  auth_token: ${{ secrets.GITHUB_TOKEN }}
-  tag: '1.0.4'
+  auth_token: ${{ secrets.GITHUB_TOKEN }}  
+  tag: '1.0.${{ github.run_number }}'  
