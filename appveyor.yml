@@ -2,7 +2,7 @@ version: 1.0.{build}
 image: Visual Studio 2019
 
 environment:
-  GITHUB_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+  TRELLO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 configuration:
   - Release
@@ -15,5 +15,5 @@ build_script:
 deploy:
   provider: GitHub
   branch: main
-  auth_token: ${{ secrets.TRELLO_TOKEN }} 
+  auth_token: ${{ secrets.GITHUB_TOKEN }} 
   tag: '1.0.${{ github.run_number }}'
