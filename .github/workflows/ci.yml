@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write  
+  issues: write   
+  pull-requests: write  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  
+
+      - name: Install dependencies
+        run: npm install  
+
+      - name: Run build
+        run: |
+          echo "Building the application..."
+          npm run build  
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: 'v1.0.${{ github.run_number }}'
+          release_name: 'Release v1.0'
+          body: 'Описание релиза'
+          files: 
+            dist/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
