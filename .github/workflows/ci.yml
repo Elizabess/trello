@@ -21,10 +21,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Укажите версию Node.js, которую вы используете
+          node-version: '14'  
 
       - name: Install dependencies
-        run: npm install  # Установите зависимости вашего проекта
+        run: npm install  
 
       - name: Run build
         run: |
@@ -38,6 +38,6 @@ jobs:
           release_name: 'Release v1.0'
           body: 'Описание релиза'
           files: 
-            - path/to/your/build/output/*  # Укажите путь к файлам, которые нужно прикрепить к релизу
+            - path/to/your/build/output/* 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
