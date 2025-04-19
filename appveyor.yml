@@ -13,9 +13,11 @@ build_script:
   - yarn build
 
 deploy:
-  provider: GitHub
-  branch: main
-  on_success: always
-  release: true
-  auth_token: ${{ secrets.MY_GITHUB_TOKEN }}  # Используйте ваш персональный токен
-  tag: '1.0.${{ github.run_number }}'
+    provider: GitHub
+    branch: main
+    on_success: always
+    release: true
+    auth_token:
+      secure: "${{ secrets.GITHUB_TOKEN }}"
+    tag: '1.0.${{ github.run_number }}'
+   
