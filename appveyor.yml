@@ -1,21 +1,14 @@
 version: 1.0.{build}
 image: Visual Studio 2019
 
-environment:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-
-configuration:
-  - Release
-
 build_script:
-  - echo "Starting build process..."
-  - yarn install
-  - yarn build
+  - npm install
+  - npm run build
 
 deploy:
-    provider: GitHub
+    provider: GitHubPages
     branch: main
-    on_success: always
+    folder: dist
     release: true
     auth_token:
       secure: "${{ secrets.GITHUB_TOKEN }}"
