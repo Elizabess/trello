@@ -10,9 +10,9 @@ deploy:
   repository: Elizabess/trello
   branch: gh-pages
   on:
-    branch: master
+    branch: main  
   skip_cleanup: true
-  access_token: $GITHUB_TOKEN
-
+  access_token: $TRELLO_TOKEN  
+  
 artifacts:
-  - dist/**
+  - dist/*  
