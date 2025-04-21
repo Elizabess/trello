@@ -10,9 +10,9 @@ deploy:
   repository: Elizabess/trello
   branch: gh-pages
   on:
-    branch: main  # Деплой будет происходить при коммите в master
+    branch: main  # Деплой будет происходить при коммите в main
   skip_cleanup: true
   access_token: $TRELLO_TOKEN  # Убедитесь, что GITHUB_TOKEN настроен правильно
 
 artifacts:
-  - dist/**  # Убедитесь, что файлы действительно находятся в этой папке
+  - path: dist/**  # Убедитесь, что файлы действительно находятся в этой папке
