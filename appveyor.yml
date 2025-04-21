@@ -1,19 +1,18 @@
 version: 1.0.{build}
 image: Visual Studio 2019
 
-environment:
-  TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }} 
-
-configuration:
-  - Release
-
 build_script:
-  - echo "Starting build process..."
-  - yarn install
-  - yarn build
+  - npm install
+  - npm run build
 
 deploy:
   provider: GitHub
-  branch: main
-  auth_token: ${{ secrets.TRELLO_TOKEN }} 
-  tag: "1.0.${{ github.run_number }}"
+  repository: Elizabess/trello
+  branch: gh-pages
+  on:
+    branch: main  # Деплой будет происходить при коммите в master
+  skip_cleanup: true
+  access_token: $TRELLO_TOKEN  # Убедитесь, что GITHUB_TOKEN настроен правильно
+
+artifacts:
+  - dist/*  # Убедитесь, что файлы действительно находятся в этой папке
