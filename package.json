@@ -4,11 +4,7 @@
   "description": "A simple trello clone",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack --mode production", 
-    "deploy": "gh-pages -d dist"
-  },
-  "dependencies": {
-    "express": "^4.17.1"
+    "build": "webpack --mode production"
   },
   "devDependencies": {
     "gh-pages": "^3.2.3",

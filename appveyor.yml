@@ -1,12 +1,18 @@
 version: 1.0.{build}
 image: Visual Studio 2019
 
-install:
-  - yarn install
-
 build_script:
-  - yarn build
+  - npm install
+  - npm run build
 
-deploy_script:
-  - npm install -g gh-pages
-  - gh-pages -d dist
+deploy:
+  provider: GitHub
+  repository: Elizabess/trello
+  branch: gh-pages
+  on:
+    branch: master
+  skip_cleanup: true
+  access_token: $GITHUB_TOKEN
+
+artifacts:
+  - dist/**
