@@ -1,19 +1,12 @@
 version: 1.0.{build}
 image: Visual Studio 2019
 
-environment:
-  TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }} 
-
-configuration:
-  - Release
+install:
+  - yarn install
 
 build_script:
-  - echo "Starting build process..."
-  - yarn install
   - yarn build
 
-deploy:
-  provider: GitHub
-  branch: main
-  auth_token: ${{ secrets.TRELLO_TOKEN }} 
-  tag: "1.0.${{ github.run_number }}"
+deploy_script:
+  - npm install -g gh-pages
+  - gh-pages -d dist
