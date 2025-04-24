@@ -1,16 +1,28 @@
-version: 1.0.{build}
-image: Visual Studio 2019
+image: Ubuntu2204 # образ для сборки
+
+stack: node 20 # окружение
+
+branches:
+  only:
+    - master # ветка git
+    - main
+
+cache: node_modules # кеширование
+
+install:
+  - yarn # команда установки зависимостей
+
+build: off # отключаем встроенную в appveyor систему сборки
 
 build_script:
-  - npm install
-  - npm run build
+  - yarn build # команда сборки
 
-deploy:
-  provider: GitHub
-  auth_token: $TRELLO_TOKEN  # Убедитесь, что это имя совпадает с тем, что вы настроили
-  release: '1.0.6'
-  tag: '1.0.6'
-  file: 'dist/bundle.js'
+test_script: # скрипт тестирования
+  - yarn lint
 
-artifacts:
-  - path: dist/** 
+deploy_script: # скрипт развёртывания
+  - git config --global credential.helper store
+  - git config --global user.name AppVeyor
+  - git config --global user.email ci@appveyor.com
+  - echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > "$HOME/.git-credentials"
+  - npx gh-pages -d dist -u "appveyor-bot <ci@appveyor>"
